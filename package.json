@@ -1,0 +1,11 @@
+{
+  "name": "chewie",
+  "version": "0.0.1",
+  "description": "Grailed deployer utility.",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "Evan Siegel <evan@grailed.com>",
+  "license": "MIT"
+}
