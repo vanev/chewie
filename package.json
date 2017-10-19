@@ -7,5 +7,14 @@
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "author": "Evan Siegel <evan@grailed.com>",
-  "license": "MIT"
+  "license": "MIT",
+  "dependencies": {
+    "chalk": "^2.1.0",
+    "commander": "^2.11.0",
+    "prompt": "^1.0.0",
+    "ramda": "^0.25.0"
+  },
+  "devDependencies": {
+    "eslint": "^4.9.0"
+  }
 }
