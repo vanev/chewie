@@ -1,5 +1,7 @@
 # Chewie
 
+[![Build Status](https://travis-ci.org/vanev/chewie.svg?branch=master)](https://travis-ci.org/vanev/chewie)
+
 `chewie` is your deploy co-pilot, here to make sure every deploy gets your cargo where it's going **safely** and **successfully**. Get some help from a pilot who's outrun Imperial Starships<sup>1</sup>.
 
 ## Features
