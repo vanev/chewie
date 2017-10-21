@@ -6,6 +6,9 @@
   "scripts": {
     "test": "./node_modules/.bin/ava **/**.test.js"
   },
+  "bin": {
+    "chewie": "./index.js"
+  },
   "author": "Evan Siegel <evan@grailed.com>",
   "license": "MIT",
   "dependencies": {
