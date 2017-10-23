@@ -8,7 +8,7 @@ test("returns a promise of options with defaults set", (t) => {
 
   const expected = {
     environment: "staging",
-    marketplace: "grailed",
+    marketplace: ["grailed"],
     reference: "foo",
   }
   return setDefaults(options)
