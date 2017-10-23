@@ -10,10 +10,10 @@ const logWelcomeMessage = (options) => {
   return Promise.resolve(options)
 }
 
-// logCompleteMessage :: Git.Result -> Promise<Git.Result>
-const logCompleteMessage = (result) => {
+// logCompleteMessage :: [Git.Result] -> Promise<[Git.Result]>
+const logCompleteMessage = (results) => {
   Logger.logSuccess("Deploy completed successfully!")
-  return Promise.resolve(result)
+  return Promise.resolve(results)
 }
 
 // handleError :: Error -> Error

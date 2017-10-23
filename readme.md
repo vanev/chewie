@@ -26,9 +26,13 @@ Deploys any git reference to any marketplace's environment.
 
 - `-r, --reference` to deploy a specific branch, tag, sha or other git reference, defaults to the current branch.
 - `-e <environment>` to deploy to a specific environment, defaults to "staging"
-- `-m <marketplace>` to deploy to a specific marketplace, defaults to "grailed"
+- `-m <marketplace>` to deploy to a specific marketplace, defaults to "grailed"; if "all", deploys to all marketplaces ("grailed", "heroine"), in parallel.
 
 **NOTE:** Currently, `chewie deploy` assumes the remote name is `"${environment}-${marketplace}"`. I'm hoping to add a feature to allow this to be configurable.
+
+### `chewie punchit`
+
+Deploys local `master` branch to **production** environment for all marketplaces, in parallel. The same as running `chewie deploy -r master -e production -m all`.
 
 ---
 
