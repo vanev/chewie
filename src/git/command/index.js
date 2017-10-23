@@ -1,4 +1,5 @@
 const execute = require("./execute")
+const executeAll = require("./executeAll")
 const refspec = require("./refspec")
 const toString = require("./toString")
 
@@ -13,5 +14,6 @@ const toString = require("./toString")
 module.exports = {
   refspec,
   execute,
+  executeAll,
   toString,
 }

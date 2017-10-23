@@ -4,7 +4,7 @@ const Deploy = require("../deploy")
 
 // Git.executePush :: Deploy.Options -> Promise<Git.Result>
 const executePush = composeP(
-  Command.execute,
+  Command.executeAll,
   Deploy.Options.toGitCommands("push")
 )
 

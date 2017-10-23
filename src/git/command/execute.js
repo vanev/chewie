@@ -1,5 +1,6 @@
-const { trim } = require("ramda")
+const { trim, map, split } = require("ramda")
 const { spawn } = require("child_process")
+const { magenta } = require("chalk")
 const Logger = require("../../logger")
 const GitError = require("../git-error")
 const refspec = require("./refspec")
@@ -12,8 +13,9 @@ const onChildClose = (resolve, reject, stdout, stderr) => (code) => {
 }
 
 // handleOutputData :: Array<String>, Logger -> String -> Void
-const handleOutputData = (stdio, _Logger=Logger) => (data) => {
-  _Logger.log(trim(data))
+const handleOutputData = (repo, stdio, _Logger=Logger) => (data) => {
+  const lines = split("\n")(trim(data))
+  map((line) => _Logger.log(`${magenta.dim(repo)} ${line}`), lines)
   stdio.push(data)
 }
 
@@ -35,12 +37,12 @@ const execute = (command, _Logger=Logger, _spawn=spawn) =>
     child
       .stdout
       .setEncoding("utf8")
-      .on("data", handleOutputData(stdout, _Logger))
+      .on("data", handleOutputData(command.repository, stdout, _Logger))
 
     child
       .stderr
       .setEncoding("utf8")
-      .on("data", handleOutputData(stderr, _Logger))
+      .on("data", handleOutputData(command.repository, stderr, _Logger))
 
     child
       .on("error", reject)
