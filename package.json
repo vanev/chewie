@@ -4,10 +4,14 @@
   "description": "Grailed deployer utility.",
   "main": "index.js",
   "scripts": {
+    "dev": "./node_modules/.bin/babel-node index.js",
     "test": "./node_modules/.bin/ava **/**.test.js"
   },
   "bin": {
-    "chewie": "./index.js"
+    "chewie": "./dist/index.js"
+  },
+  "ava": {
+    "require": "babel-register"
   },
   "author": "Evan Siegel <evan@grailed.com>",
   "license": "MIT",
@@ -19,6 +23,10 @@
   },
   "devDependencies": {
     "ava": "^0.22.0",
+    "babel-cli": "^6.26.0",
+    "babel-preset-env": "^1.6.1",
+    "babel-preset-react": "^6.24.1",
+    "babel-preset-stage-1": "^6.24.1",
     "eslint": "^4.9.0"
   }
 }
