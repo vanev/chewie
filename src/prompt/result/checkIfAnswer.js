@@ -1,4 +1,5 @@
-const { compose, contains, not } = require("ramda")
+import { compose, contains, not } from "ramda"
+
 const excludes = compose(not, contains)
 
 // Prompt.Result.checkIfAnswer :: Array<String> -> Prompt.Result -> Promise<Prompt.Result>
@@ -10,4 +11,4 @@ const checkIfAnswer = (answers) => (result) => {
   return Promise.resolve(result)
 }
 
-module.exports = checkIfAnswer
+export default checkIfAnswer

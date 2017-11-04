@@ -1,5 +1,5 @@
-const { promisify } = require('util')
-const prompt = require("prompt")
+import { promisify } from "util"
+import prompt from "prompt"
 
 // Prompt.get :: Prompt.Options -> Promise<Prompt.Result>
 const get = (config, _prompt=prompt) => {
@@ -10,4 +10,4 @@ const get = (config, _prompt=prompt) => {
   return promisify(_prompt.get)(config)
 }
 
-module.exports = get
+export default get

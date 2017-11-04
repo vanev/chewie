@@ -1,5 +1,5 @@
-const { test } = require("ava")
-const setDefaults = require("./setDefaults")
+import { test } from "ava"
+import setDefaults from "./setDefaults"
 
 test("returns a promise of options with defaults set", (t) => {
   const options = {

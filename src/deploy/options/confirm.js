@@ -1,6 +1,6 @@
-const { composeP } = require("ramda")
-const Prompt = require("../../prompt")
-const toPromptConfig = require("./toPromptConfig")
+import { composeP } from "ramda"
+import * as Prompt from "../../prompt"
+import toPromptConfig from "./toPromptConfig"
 
 // Deploy.Options.confirm :: Deploy.Options -> Promise<Deploy.Options>
 const confirm = (options, _Prompt=Prompt) => composeP(
@@ -10,4 +10,4 @@ const confirm = (options, _Prompt=Prompt) => composeP(
   toPromptConfig
 )(options)
 
-module.exports = confirm
+export default confirm

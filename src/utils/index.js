@@ -1,5 +1,1 @@
-const prepend = require("./prepend")
-
-module.exports = {
-  prepend,
-}
+export prepend from "./prepend"

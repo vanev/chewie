@@ -1,4 +1,4 @@
-const { map } = require("ramda")
+import { map } from "ramda"
 
 // Git.Command.toGitCommands :: String -> Deploy.Options -> [Git.Command]
 const toGitCommands = (cmd) => (options) =>
@@ -10,4 +10,4 @@ const toGitCommands = (cmd) => (options) =>
     flags: ["--force"],
   }), options.marketplace))
 
-module.exports = toGitCommands
+export default toGitCommands

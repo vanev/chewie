@@ -1,25 +1,25 @@
-const { compose, prop, repeat, size, join, toString } = require("ramda")
-const { red, green, yellow, magenta, grey } = require("chalk")
-const { prepend } = require("../utils")
+import { compose, prop, repeat, size, join, toString } from "ramda"
+import { red, green, yellow, magenta, grey } from "chalk"
+import { prepend } from "../utils"
 
 // log :: Any -> Any
-const log = (any, _logger=console) => {
+export const log = (any, _logger=console) => {
   _logger.log(any)
   return any
 }
 
-const logDog = compose(log, prepend("\n"), prepend("🐶  "))
+export const logDog = compose(log, prepend("\n"), prepend("🐶  "))
 
-const logMessage = log
+export const logMessage = log
 
-const logError = compose(log, red, prepend("\n"), prepend("🚨  "), prop("message"))
+export const logError = compose(log, red, prepend("\n"), prepend("🚨  "), prop("message"))
 
-const logWarning = compose(log, yellow, prepend("\n"), prepend("⚠️  "))
+export const logWarning = compose(log, yellow, prepend("\n"), prepend("⚠️  "))
 
-const logSuccess = compose(log, green, prepend("\n"), prepend("✅  "))
+export const logSuccess = compose(log, green, prepend("\n"), prepend("✅  "))
 
 // logCallout :: Any -> Any
-const logCallout = (any) => {
+export const logCallout = (any) => {
   const length = size(toString(any)) + 4
   const rows = [
     grey("+" + repeat(length - 2, "-") + "+"),
@@ -30,14 +30,4 @@ const logCallout = (any) => {
   log(join("\n", rows))
 
   return any
-}
-
-module.exports = {
-  log,
-  logDog,
-  logMessage,
-  logError,
-  logWarning,
-  logSuccess,
-  logCallout,
 }

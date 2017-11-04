@@ -1,7 +1,2 @@
-const get = require("./get")
-const Result = require("./result")
-
-module.exports = {
-  get,
-  Result,
-}
+export get from "./get"
+export * as Result from "./result"

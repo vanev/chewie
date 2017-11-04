@@ -1,5 +1,5 @@
-const { test } = require("ava")
-const confirm = require("./confirm")
+import { test } from "ava"
+import confirm from "./confirm"
 
 test("when confirmed, returns a promise of given deploy options", (t) => {
   const options = {

@@ -1,5 +1,5 @@
-const { test } = require("ava")
-const prepend = require("./prepend")
+import { test } from "ava"
+import prepend from "./prepend"
 
 test("Utils.prepend", (t) => {
   const actual = prepend("🤖")("foo")

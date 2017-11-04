@@ -1,5 +1,5 @@
-const { test } = require("ava")
-const checkIfAllowed = require("./checkIfAllowed")
+import { test } from "ava"
+import checkIfAllowed from "./checkIfAllowed"
 
 test("when allowed, log a message and return a promise of those options", (t) => {
   const options = {}

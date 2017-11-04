@@ -1,5 +1,5 @@
-const { join } = require("ramda")
-const refspec = require("./refspec")
+import { join } from "ramda"
+import refspec from "./refspec"
 
 // Git.Command.toString :: Git.Command -> String
 const toString = (command) => join(" ", [
@@ -10,4 +10,4 @@ const toString = (command) => join(" ", [
   ...command.flags,
 ])
 
-module.exports = toString
+export default toString

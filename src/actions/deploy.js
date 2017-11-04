@@ -1,8 +1,8 @@
-const { composeP } = require("ramda")
-const { cyan } = require("chalk")
-const Deploy = require("../deploy")
-const Git = require("../git")
-const Logger = require("../logger")
+import { composeP } from "ramda"
+import { cyan } from "chalk"
+import * as Deploy from "../deploy"
+import * as Git from "../git"
+import * as Logger from "../logger"
 
 // logWelcomeMessage :: Deploy.Options -> Promise<Deploy.Options>
 const logWelcomeMessage = (options) => {
@@ -32,4 +32,4 @@ const deploy = (options) =>
   )(options)
     .catch(handleError)
 
-module.exports = deploy
+export default deploy

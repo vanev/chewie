@@ -1,5 +1,5 @@
-const { test } = require("ava")
-const checkIfAnswer = require("./checkIfAnswer")
+import { test } from "ava"
+import checkIfAnswer from "./checkIfAnswer"
 
 test("when response is allowed", (t) => {
   const testResult = { response: "foo" }

@@ -1,5 +1,5 @@
-const { test } = require("ava")
-const get = require("./get")
+import { test } from "ava"
+import get from "./get"
 
 test("sets up the prompt and returns a promise containing a result", (t) => {
   const testConfig = {}

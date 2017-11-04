@@ -1,5 +1,5 @@
-const { test } = require("ava")
-const toGitCommands = require("./toGitCommands")
+import { test } from "ava"
+import toGitCommands from "./toGitCommands"
 
 test("returns a promise containing a git command", (t) => {
   const options = {

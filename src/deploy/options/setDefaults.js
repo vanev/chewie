@@ -1,5 +1,5 @@
-const { execSync } = require("child_process")
-const { trim, toString, compose, propOr } = require("ramda")
+import { execSync } from "child_process"
+import { trim, toString, compose, propOr } from "ramda"
 
 const ENVIRONMENTS = ["staging", "production"]
 
@@ -32,4 +32,4 @@ const setDefaults = (options) => Promise.resolve({
   reference: setReference(options),
 })
 
-module.exports = setDefaults
+export default setDefaults
