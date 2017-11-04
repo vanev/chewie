@@ -1,5 +1,5 @@
-const { test } = require("ava")
-const GitError = require("./git-error")
+import { test } from "ava"
+import GitError from "./git-error"
 
 test(".message contains the code", (t) => {
   const result = { code: 500 }

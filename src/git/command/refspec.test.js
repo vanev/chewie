@@ -1,5 +1,5 @@
-const { test } = require("ava")
-const refspec = require("./refspec")
+import { test } from "ava"
+import refspec from "./refspec"
 
 test("returns a git refspec", (t) => {
   const command = {

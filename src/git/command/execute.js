@@ -1,9 +1,9 @@
-const { trim, map, split } = require("ramda")
-const { spawn } = require("child_process")
-const { magenta } = require("chalk")
-const Logger = require("../../logger")
-const GitError = require("../git-error")
-const refspec = require("./refspec")
+import { trim, map, split } from "ramda"
+import { spawn } from "child_process"
+import { magenta } from "chalk"
+import * as Logger from "../../logger"
+import GitError from "../git-error"
+import refspec from "./refspec"
 
 // onChildClose :: Function, Function, Array<String>, Array<String> -> Number -> Git.Result
 const onChildClose = (resolve, reject, stdout, stderr) => (code) => {
@@ -51,4 +51,4 @@ const execute = (command, _Logger=Logger, _spawn=spawn) =>
       .on("close", onChildClose(resolve, reject, stdout, stderr))
   })
 
-module.exports = execute
+export default execute

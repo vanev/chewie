@@ -1,5 +1,5 @@
-const { test } = require("ava")
-const toString = require("./toString")
+import { test } from "ava"
+import toString from "./toString"
 
 test("returns a string of the important stuff", (t) => {
   const command = {

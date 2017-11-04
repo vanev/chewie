@@ -1,5 +1,5 @@
-const { test } = require("ava")
-const execute = require("./execute")
+import { test } from "ava"
+import execute from "./execute"
 
 test("returns a promise containing a result", (t) => {
   const command = {

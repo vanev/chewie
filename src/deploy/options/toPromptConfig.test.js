@@ -1,5 +1,5 @@
-const { test } = require("ava")
-const toPromptConfig = require("./toPromptConfig")
+import { test } from "ava"
+import toPromptConfig from "./toPromptConfig"
 
 test("returns a promise of prompt configuration", (t) => {
   const options = {

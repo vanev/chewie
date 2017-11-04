@@ -1,4 +1,4 @@
-const deploy = require("./deploy")
+import deploy from "./deploy"
 
 const OPTIONS = {
   environment: "production",
@@ -9,4 +9,4 @@ const OPTIONS = {
 // Actions.punchit :: Void -> Promise<Git.Result>
 const punchit = () => deploy(OPTIONS)
 
-module.exports = punchit
+export default punchit

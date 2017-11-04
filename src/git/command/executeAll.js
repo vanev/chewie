@@ -1,7 +1,7 @@
-const { map } = require("ramda")
-const execute = require("./execute")
+import { map } from "ramda"
+import execute from "./execute"
 
 // Git.Command.executeAll :: [Git.Command] -> Promise<[Git.Result]>
 const executeAll = (commands) => Promise.all(map(execute)(commands))
 
-module.exports = executeAll
+export default executeAll

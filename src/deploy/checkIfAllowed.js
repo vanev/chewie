@@ -1,6 +1,6 @@
-const { composeP } = require("ramda")
-const Logger = require("../logger")
-const Options = require("./options")
+import { composeP } from "ramda"
+import * as Logger from "../logger"
+import * as Options from "./options"
 
 // logSuccessMessage :: Deploy.Options -> Promise<Deploy.Options>
 const logSuccessMessage = (_Logger=Logger) => (options) => {
@@ -14,4 +14,4 @@ const checkIfAllowed = (options, _Logger=Logger, _Options=Options) => composeP(
   _Options.confirm
 )(options)
 
-module.exports = checkIfAllowed
+export default checkIfAllowed

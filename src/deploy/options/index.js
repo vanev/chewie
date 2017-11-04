@@ -1,9 +1,3 @@
-const setDefaults = require("./setDefaults")
-const confirm = require("./confirm")
-const toGitCommands = require("./toGitCommands")
-
-module.exports = {
-  setDefaults,
-  confirm,
-  toGitCommands,
-}
+export setDefaults from "./setDefaults"
+export confirm from "./confirm"
+export toGitCommands from "./toGitCommands"

@@ -1,5 +1,1 @@
-const checkIfAnswer = require("./checkIfAnswer")
-
-module.exports = {
-  checkIfAnswer,
-}
+export checkIfAnswer from "./checkIfAnswer"

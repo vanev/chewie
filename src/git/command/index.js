@@ -1,7 +1,7 @@
-const execute = require("./execute")
-const executeAll = require("./executeAll")
-const refspec = require("./refspec")
-const toString = require("./toString")
+export execute from "./execute"
+export executeAll from "./executeAll"
+export refspec from "./refspec"
+export toString from "./toString"
 
 // Git.Command :: {
 //   cmd: String,
@@ -10,10 +10,3 @@ const toString = require("./toString")
 //   dst: String,
 //   flags: Array<String>,
 // }
-
-module.exports = {
-  refspec,
-  execute,
-  executeAll,
-  toString,
-}
