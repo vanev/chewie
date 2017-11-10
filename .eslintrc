@@ -11,14 +11,21 @@
   },
   "plugins": [
     "react",
-    "import"
+    "import",
+    "flowtype"
   ],
   "extends": [
     "eslint:recommended",
     "plugin:react/recommended",
-    "plugin:import/recommended"
+    "plugin:import/recommended",
+    "plugin:flowtype/recommended"
   ],
   "rules": {
     "react/prop-types": 0
+  },
+  "settings": {
+    "flowtype": {
+      "onlyFilesWithFlowAnnotation": true
+    }
   }
 }
