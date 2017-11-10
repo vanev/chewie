@@ -10,7 +10,7 @@
     "test": "./node_modules/.bin/ava **/**.test.js"
   },
   "bin": {
-    "chewie": "node ./dist/index.js"
+    "chewie": "dist/index.js"
   },
   "ava": {
     "require": "babel-register"
