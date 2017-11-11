@@ -1,2 +1,6 @@
 node_modules
 dist
+
+# Ignoring package-lock.json based on the advice in this StackOverflow answer:
+# https://stackoverflow.com/a/44904494
+package-lock.json
