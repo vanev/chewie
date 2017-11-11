@@ -15,6 +15,10 @@
   "ava": {
     "require": "babel-register"
   },
+  "repository": {
+    "type": "git",
+    "url": "https://www.github.com/vanev/chewie.git"
+  },
   "author": "Evan Siegel <evan@grailed.com>",
   "license": "MIT",
   "dependencies": {
