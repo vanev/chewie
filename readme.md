@@ -18,6 +18,8 @@
 yarn add -g chewie
 ```
 
+Ensure that you have a `CHEWIE_TRAVIS_GITHUB_TOKEN` in your environment set to a valid [Github Token](https://github.com/settings/tokens/new) with the following permissions: **admin:repo_hook**, **read:org**, **repo**, **user**.
+
 ## Usage
 
 ### `chewie deploy`
