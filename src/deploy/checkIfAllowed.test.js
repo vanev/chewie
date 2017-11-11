@@ -13,9 +13,18 @@ test("when allowed, log a message and return a promise of those options", (t) =>
     confirm: (options) => Promise.resolve(options)
   }
 
-  return checkIfAllowed(options, Logger, Options)
+  const Travis = {
+    getBranchState: () => () => Promise.resolve("foo"),
+    authenticate: () => Promise.resolve(),
+  }
+
+  const expected = {
+    buildState: "foo",
+  }
+
+  return checkIfAllowed(options, Logger, Options, Travis)
     .then((actual) => {
-      t.is(actual, options)
+      t.deepEqual(actual, expected)
       t.true(logSuccessCalled)
     })
 })
