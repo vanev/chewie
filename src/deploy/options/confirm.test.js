@@ -1,19 +1,20 @@
 import { test } from "ava"
-import confirm from "./confirm"
+import { Future } from "ramda-fantasy"
+import confirm, { di } from "./confirm"
 
-test("when confirmed, returns a promise of given deploy options", (t) => {
+test.cb("when confirmed, returns a future of given deploy options", (t) => {
   const options = {
     environment: "foo",
   }
-  const Prompt = {
-    Result: {
-      checkIfAnswer: () => () => Promise.resolve(),
-    },
-    get: () => Promise.resolve(),
+  const promptGet = () => Future.of({ response: "y" })
+
+  di({ promptGet })
+
+  const onRejected = t.end
+  const onResolved = (actual) => {
+    t.deepEqual(actual, options)
+    t.end()
   }
 
-  return confirm(options, Prompt)
-    .then((actual) => {
-      t.deepEqual(actual, options)
-    })
+  confirm(options).fork(onRejected, onResolved)
 })

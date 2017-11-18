@@ -6,7 +6,7 @@ const OPTIONS = {
   reference: "master",
 }
 
-// Actions.punchit :: Void -> Promise<Git.Result>
+// Actions.punchit :: Void -> Future Error [Git.Result]
 const punchit = () => deploy(OPTIONS)
 
 export default punchit

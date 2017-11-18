@@ -1,13 +1,23 @@
-import { promisify } from "util"
+import { Future } from "ramda-fantasy"
 import prompt from "prompt"
 
-// Prompt.get :: Prompt.Options -> Promise<Prompt.Result>
-const get = (config, _prompt=prompt) => {
-  _prompt.message = ""
-  _prompt.delimiter = ""
-  _prompt.start()
-
-  return promisify(_prompt.get)(config)
+let dependencies = {
+  prompt,
 }
+export const di = (newDependencies) => {
+  dependencies = { ...dependencies, ...newDependencies }
+}
+
+// Prompt.get :: Prompt.Options -> Future Error Prompt.Result
+const get = (config) => Future((reject, resolve) => {
+  dependencies.prompt.message = ""
+  dependencies.prompt.delimiter = ""
+  dependencies.prompt.start()
+
+  dependencies.prompt.get(config, (error, result) => {
+    if (error) return reject(error)
+    return resolve(result)
+  })
+})
 
 export default get

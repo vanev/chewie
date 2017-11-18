@@ -1,21 +1,19 @@
-import { assoc, composeP, __, is } from "ramda"
+import { Future } from "ramda-fantasy"
+import { assoc, __, compose, map, chain } from "ramda"
 import * as Travis from "../travis"
 
-const handleTravisError = (error) => {
-  if (is(Travis.BranchNotFoundError)) return Promise.resolve("unknown")
+// getBranchState :: Deploy.Options -> Future Error String
+const getBranchState = ({ reference }) => compose(
+  chain(Travis.getBranchState(reference)),
+  chain(Travis.authenticate),
+  Future.of
+)({ empty: "object" })
 
-  throw error
-}
-
-const getBranchState = ({ reference }, _Travis=Travis) => () => composeP(
-  _Travis.getBranchState(reference),
-  _Travis.authenticate
-)().catch(handleTravisError)
-
-// Deploy.setBuildState :: Deploy.Options -> Promise<Deploy.Options>
-const setBuildState = (_Travis=Travis) => (options) => composeP(
-  assoc("buildState", __, options),
-  getBranchState(options, _Travis),
-)()
+// Deploy.setBuildState :: Deploy.Options -> Future Error Deploy.Options
+const setBuildState = (options) => compose(
+  map(assoc("buildState", __, options)),
+  chain(getBranchState),
+  Future.of
+)(options)
 
 export default setBuildState

@@ -1,20 +1,21 @@
-import { composeP } from "ramda"
-import * as Logger from "../logger"
-import * as Travis from "../travis"
-import * as Options from "./options"
+import { Future } from "ramda-fantasy"
+import { compose, chain, map } from "ramda"
 import setBuildState from "./setBuildState"
+import { logSuccess } from "../logger"
+import * as Options from "./options"
 
-// logSuccessMessage :: Deploy.Options -> Promise<Deploy.Options>
-const logSuccessMessage = (_Logger=Logger) => (options) => {
-  _Logger.logSuccess("Great! I'll get right on it.")
-  return Promise.resolve(options)
+// logSuccessMessage :: Deploy.Options -> Deploy.Options
+const logSuccessMessage = (options) => {
+  logSuccess("Great! I'll get right on it.")
+  return options
 }
 
-// Deploy.checkIfAllowed :: Deploy.Options -> Promise<Deploy.Options>
-const checkIfAllowed = (options, _Logger=Logger, _Options=Options, _Travis=Travis) => composeP(
-  logSuccessMessage(_Logger),
-  _Options.confirm,
-  setBuildState(_Travis)
-)(options)
+// Deploy.checkIfAllowed :: Deploy.Options -> Future Error Deploy.Options
+const checkIfAllowed = compose(
+  map(logSuccessMessage),
+  chain(Options.confirm),
+  chain(setBuildState),
+  Future.of
+)
 
 export default checkIfAllowed

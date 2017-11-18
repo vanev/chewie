@@ -1,13 +1,13 @@
 import { map } from "ramda"
 
-// Git.Command.toGitCommands :: String -> Deploy.Options -> [Git.Command]
+// Git.Command.toGitCommands :: String -> Deploy.Options -> Array Git.Command
 const toGitCommands = (cmd) => (options) =>
-  Promise.resolve(map((marketplace) => ({
+  map((marketplace) => ({
     cmd,
     repository: `${options.environment}-${marketplace}`,
     src: options.reference,
     dst: "master",
     flags: ["--force"],
-  }), options.marketplace))
+  }), options.marketplace)
 
 export default toGitCommands
