@@ -1,7 +1,7 @@
 import { test } from "ava"
-import get from "./get"
+import get, { di } from "./get"
 
-test("sets up the prompt and returns a promise containing a result", (t) => {
+test.cb("sets up the prompt and returns a future containing a result", (t) => {
   const testConfig = {}
   let startHasBeenCalled = false
   const prompt = {
@@ -15,13 +15,15 @@ test("sets up the prompt and returns a promise containing a result", (t) => {
     },
   }
 
+  di({ prompt })
+
   const expected = { response: "y" }
 
-  return get(testConfig, prompt)
-    .then((actual) => {
-      t.is(prompt.message, "")
-      t.is(prompt.delimiter, "")
-      t.true(startHasBeenCalled)
-      t.deepEqual(actual, expected)
-    })
+  get(testConfig, prompt).fork(t.end, (actual) => {
+    t.is(prompt.message, "")
+    t.is(prompt.delimiter, "")
+    t.true(startHasBeenCalled)
+    t.deepEqual(actual, expected)
+    t.end()
+  })
 })

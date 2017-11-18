@@ -1,7 +1,8 @@
 import { test } from "ava"
-import executeAll from "./executeAll"
+import { Future } from "ramda-fantasy"
+import executeAll, { di } from "./executeAll"
 
-test.skip("returns a promise containing an array of results", (t) => {
+test.cb("returns a future containing an array of results", (t) => {
   const commands = [
     {
       cmd: "foo",
@@ -18,12 +19,17 @@ test.skip("returns a promise containing an array of results", (t) => {
       flags: ["--force"],
     },
   ]
+  const execute = ({ repository, src }) => Future.of({ foo: repository, bar: src })
+
+  di({ execute })
 
   const expected = [
-    {},
+    { foo: "bar-qux", bar: "baz" },
+    { foo: "two-three", bar: "four" },
   ]
-  return executeAll(commands)
-    .then((actual) => {
-      t.deepEqual(actual, expected)
-    })
+
+  executeAll(commands).fork(t.end, (actual) => {
+    t.deepEqual(actual, expected)
+    t.end()
+  })
 })

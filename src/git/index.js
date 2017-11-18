@@ -1,9 +1,9 @@
-import { composeP } from "ramda"
+import { compose } from "ramda"
 import * as Command from "./command"
 import * as Deploy from "../deploy"
 
-// Git.executePush :: Deploy.Options -> Promise<Git.Result>
-export const executePush = composeP(
+// Git.executePush :: Deploy.Options -> Future Error (Array Git.Result)
+export const executePush = compose(
   Command.executeAll,
-  Deploy.Options.toGitCommands("push")
+  Deploy.Options.toGitCommands("push"),
 )

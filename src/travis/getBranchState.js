@@ -1,10 +1,7 @@
-// @flow
-
 import { readFileSync } from "fs"
+import { Future } from "ramda-fantasy"
 import { compose, match, tail, path, join, flip, curry } from "ramda"
 import travis from "./travis"
-import Travis from "travis-ci"
-import BranchNotFoundError from "./BranchNotFoundError"
 
 const partialReadFileSync = curry(flip(readFileSync))
 
@@ -19,14 +16,13 @@ const [ owner, repo ] = compose(
   join("/")
 )([process.cwd(), "package.json"])
 
-const getBranchState: string => Travis => Promise<string>
-= (branch) => (_travis=travis) => new Promise((resolve, reject) => {
-  _travis
+// getBranchState :: String -> Void -> Future Error String
+const getBranchState = (branch) => () => Future((reject, resolve) => {
+  travis
     .repos(owner, repo)
     .branches(branch)
     .get((error, response) => {
-      if (error) return reject(new BranchNotFoundError(branch))
-      return resolve(response.branch.state)
+      return resolve((error) ? "unknown" : response.branch.state)
     })
 })
 

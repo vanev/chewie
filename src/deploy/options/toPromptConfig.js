@@ -6,8 +6,8 @@ const status = compose(
   prop("buildState")
 )
 
-// Deploy.Options.toPromptConfig :: Deploy.Options -> Promise<Prompt.Config>
-const toPromptConfig = (options) => Promise.resolve({
+// Deploy.Options.toPromptConfig :: Deploy.Options -> Prompt.Config
+const toPromptConfig = (options) => ({
   name: "response",
   message: `The most recent build status is: ${status(options)}.\nAre you sure you want to deploy to ${cyan(options.environment)}? [y/n]`,
 })

@@ -1,7 +1,7 @@
 import { test } from "ava"
-import execute from "./execute"
+import execute, { di } from "./execute"
 
-test("returns a promise containing a result", (t) => {
+test.cb("returns a future containing a result", (t) => {
   const command = {
     cmd: "foo",
     repository: "bar-qux",
@@ -54,14 +54,16 @@ test("returns a promise containing a result", (t) => {
     }
   }
 
+  di({ spawn, Logger })
+
   const expected = {
     code: 0,
     stdout: ["foo bar baz"],
     stderr: ["hoo jar jaz"],
   }
-  return execute(command, Logger, spawn)
-    .then((actual) => {
-      t.deepEqual(actual, expected)
-      t.is(timesLogCalled, 2)
-    })
+  execute(command).fork(t.end, (actual) => {
+    t.deepEqual(actual, expected)
+    t.is(timesLogCalled, 2)
+    t.end()
+  })
 })

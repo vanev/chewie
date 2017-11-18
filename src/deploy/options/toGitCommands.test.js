@@ -1,12 +1,14 @@
 import { test } from "ava"
 import toGitCommands from "./toGitCommands"
 
-test("returns a promise containing a git command", (t) => {
+test("returns a git command", (t) => {
   const options = {
     environment: "bar",
     marketplace: ["qux", "qas"],
     reference: "baz",
   }
+
+  const actual = toGitCommands("foo")(options)
 
   const expected = [
     {
@@ -24,8 +26,5 @@ test("returns a promise containing a git command", (t) => {
       flags: ["--force"],
     },
   ]
-  return toGitCommands("foo")(options)
-    .then((actual) => {
-      t.deepEqual(actual, expected)
-    })
+  t.deepEqual(actual, expected)
 })
