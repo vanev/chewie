@@ -1,4 +1,4 @@
-import { Future } from "ramda-fantasy"
+import Future from "fluture"
 import { traverse } from "ramda"
 import execute from "./execute"
 

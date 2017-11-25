@@ -1,5 +1,5 @@
 import { test } from "ava"
-import { Future } from "ramda-fantasy"
+import Future from "fluture"
 import executeAll, { di } from "./executeAll"
 
 test.cb("returns a future containing an array of results", (t) => {

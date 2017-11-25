@@ -1,4 +1,4 @@
-import { Future } from "ramda-fantasy"
+import Future from "fluture"
 import { trim, map, split } from "ramda"
 import { spawn } from "child_process"
 import chalk from "chalk"

@@ -1,4 +1,4 @@
-import { Future } from "ramda-fantasy"
+import Future from "fluture"
 import prompt from "prompt"
 
 let dependencies = {
@@ -9,15 +9,12 @@ export const di = (newDependencies) => {
 }
 
 // Prompt.get :: Prompt.Options -> Future Error Prompt.Result
-const get = (config) => Future((reject, resolve) => {
+const get = (config) => Future.node((done) => {
   dependencies.prompt.message = ""
   dependencies.prompt.delimiter = ""
   dependencies.prompt.start()
 
-  dependencies.prompt.get(config, (error, result) => {
-    if (error) return reject(error)
-    return resolve(result)
-  })
+  dependencies.prompt.get(config, done)
 })
 
 export default get
