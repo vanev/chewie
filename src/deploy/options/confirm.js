@@ -1,4 +1,4 @@
-import { Future } from "ramda-fantasy"
+import Future from "fluture"
 import { compose, map, chain } from "ramda"
 import toPromptConfig from "./toPromptConfig"
 import * as Prompt from "../../prompt"
@@ -14,10 +14,9 @@ export const di = (newDependencies) => {
 // Deploy.Options.confirm :: Deploy.Options -> Future Error Deploy.Options
 const confirm = (options) => compose(
   map(() => options),
-  map(Prompt.Result.checkIfAnswer(["y", "yes"])),
-  chain(dependencies.promptGet),
-  map(toPromptConfig),
-  Future.of
+  chain(Future.encase(Prompt.Result.checkIfAnswer(["y", "yes"]))),
+  dependencies.promptGet,
+  toPromptConfig
 )(options)
 
 export default confirm

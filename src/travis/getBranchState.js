@@ -1,5 +1,5 @@
 import { readFileSync } from "fs"
-import { Future } from "ramda-fantasy"
+import Future from "fluture"
 import { compose, match, tail, path, join, flip, curry } from "ramda"
 import travis from "./travis"
 

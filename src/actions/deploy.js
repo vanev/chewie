@@ -1,5 +1,4 @@
-import { Future } from "ramda-fantasy"
-import { compose, map, chain } from "ramda"
+import { compose, chain } from "ramda"
 import { cyan } from "chalk"
 import * as Deploy from "../deploy"
 import * as Git from "../git"
@@ -25,10 +24,9 @@ const handleError = (error) => {
 // steps :: Deploy.Options -> Future Error (Array Git.Result)
 const steps = compose(
   chain(Git.executePush),
-  chain(Deploy.checkIfAllowed),
-  map(renderWelcomeMessage),
-  map(Deploy.Options.setDefaults),
-  Future.of
+  Deploy.checkIfAllowed,
+  renderWelcomeMessage,
+  Deploy.Options.setDefaults
 )
 
 // Actions.deploy :: Deploy.Options -> Void

@@ -1,5 +1,4 @@
-import { Future } from "ramda-fantasy"
-import { compose, chain, map } from "ramda"
+import { compose, map, chain } from "ramda"
 import setBuildState from "./setBuildState"
 import { logDog } from "../logger"
 import * as Options from "./options"
@@ -14,8 +13,7 @@ const logAllowedMessage = (options) => {
 const checkIfAllowed = compose(
   map(logAllowedMessage),
   chain(Options.confirm),
-  chain(setBuildState),
-  Future.of
+  setBuildState
 )
 
 export default checkIfAllowed

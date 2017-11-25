@@ -1,5 +1,5 @@
 import { test } from "ava"
-import { Future } from "ramda-fantasy"
+import Future from "fluture"
 import confirm, { di } from "./confirm"
 
 test.cb("when confirmed, returns a future of given deploy options", (t) => {
