@@ -1,5 +1,5 @@
 import Future from "fluture"
-import { traverse } from "ramda"
+import { compose, map } from "ramda"
 import execute from "./execute"
 
 let dependencies = {
@@ -9,7 +9,12 @@ export const di = (newDependencies) => {
   dependencies = { ...dependencies, ...newDependencies }
 }
 
+const LIMIT = Infinity
+
 // Git.Command.executeAll :: Array Git.Command -> Future Error (Array Git.Result)
-const executeAll = (commands) => traverse(Future.of, dependencies.execute, commands)
+const executeAll = (commands) => compose(
+  Future.parallel(LIMIT),
+  map(dependencies.execute)
+)(commands)
 
 export default executeAll
